@@ -7,6 +7,11 @@ export const Label = styled.label`
   border: 1px solid var(--input-border-color);
   border-radius: var(--b-radius-input);
   width: 100%;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: var(--input-hover-shadow);
+  }
   
   &:last-child {
     margin: 0;

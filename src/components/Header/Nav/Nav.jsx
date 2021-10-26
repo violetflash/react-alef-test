@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
 import { NavElement, NavList } from "./styles";
+import { Link, useLocation } from 'react-router-dom';
 
 export const Nav = () => {
+  const { pathname } = useLocation();
+
   const pagesData = [
     { title: 'Форма', route: '/form' },
     { title: 'Превью', route: '/preview' }
@@ -9,8 +11,8 @@ export const Nav = () => {
 
   const links = pagesData.map(el => {
     return (
-      <NavElement>
-        <Link key={el.route} to={el.route}>{el.title}</Link>
+      <NavElement key={el.route} active={pathname === el.route}>
+        <Link to={el.route}>{el.title}</Link>
       </NavElement>
     )
   })

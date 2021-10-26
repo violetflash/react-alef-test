@@ -1,11 +1,12 @@
 import styled from 'styled-components/macro';
+import { motion } from 'framer-motion';
 
 export const StyledForm = styled.form`
   margin: 0;
   width: 100%;
 `;
 
-export const Fieldset = styled.fieldset`
+export const Fieldset = styled(motion.fieldset)`
   position: relative;
   margin: 0 0 44px;
   padding: 0;

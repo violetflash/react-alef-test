@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 
+
 export const NavList = styled.ul`
   display: flex;
   align-items: center;
@@ -9,5 +10,8 @@ export const NavList = styled.ul`
 `;
 
 export const NavElement = styled.li`
+  color: ${props => props.active ? 'var(--accent-color)' : 'var(--main-color)'};
   margin: 0 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
 `;

@@ -26,15 +26,25 @@ html {
   --main-color: #111;
   --main-color-light: rgba(17, 17, 17, 0.48);
   --accent-color: #01a7fd;
-  --accent-color-hover: #0291d7;
+  --accent-color-hover: #0f79af;
   --white: #fff;
   --gray: #fafafa;
   --bg-color: var(--white);
   --bg-color-footer: var(--gray);
   --input-border-color: #f1f1f1;
 
+  /* buttons colors */
+
+  --primary-hover: var(--accent-color-hover);
+  --primary-active: #59c79f;
+  --primary-focus-border: 2px solid var(--main-color-light);
+  --secondary-hover: rgba(110, 65, 226, 0.04);
+  --secondary-active: rgba(110, 65, 226, 0.16);
+  --secondary-focus-border: 2px solid var(--main-color-light);
+
   /* shadow */
   --shadow: 0 1px 0 rgba(17, 17, 17, 0.1);
+  --input-hover-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 30px rgba(51, 51, 51, 0.16);
 
   /* others */
   --container-width: 1396px;
