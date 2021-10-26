@@ -1,0 +1,52 @@
+@import-normalize;
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* typo */
+  --family: "Montserrat", sans-serif;
+  --fs-normal: 14px;
+  --fs-title: 16px;
+  --fw-normal: 400;
+  --fw-bold: 700;
+
+  /* colors */
+  --main-color: #111;
+  --main-color-light: rgba(var(--mainColor), 0.48);
+  --accent-color: #01a7fd;
+  --white: #fff;
+  --input-border-color: #f1f1f1;
+
+  /* shadow */
+  --shadow: 0px 1px 0px rgba(17, 17, 17, 0.1);
+
+  /* others */
+  --b-radius-button: 100px;
+  --b-radius-input: 4px;
+  --button-bgi: linear-gradient(to right, #abc4e8 0%, #c2e9fb 51%, #abc4e8 100%);
+  --button-bgi-danger: linear-gradient(to right, #da9682 0%, #ecdede 51%, #da9682 100%);
+  --inputBgColor: var(--grey);
+  --inputFocusColor: var(--accentColor);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100%;
+  font-family: var(--family);
+  font-weight: var(--fw-normal);
+  font-size: var(--fs-normal);
+  color: var(--mainColor);
+  background-color: var(--bgColorDark);
+}
