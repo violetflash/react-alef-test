@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { css } from 'styled-components';
 
 export const Label = styled.label`
   display: block;
@@ -16,11 +17,17 @@ export const Label = styled.label`
   &:last-child {
     margin: 0;
   }
+  
+  ${props => props.error && css`
+    background-color: #fd7a62;
+  `}
+  
 `;
 
 export const StyledInput = styled.input`
   width: 100%;
   border: none;
+  background-color: inherit;
 `;
 
 export const Placeholder = styled.span`

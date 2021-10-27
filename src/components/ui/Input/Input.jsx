@@ -1,8 +1,8 @@
 import { StyledInput, Label, Placeholder } from "./styles";
 
-export const Input = ({ label, name, value, onChange = Function.prototype }) => {
+export const Input = ({ label, name, value, onChange = Function.prototype, error = false }) => {
   return (
-    <Label>
+    <Label error={error}>
       <Placeholder>
         {label}
       </Placeholder>

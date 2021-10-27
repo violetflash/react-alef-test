@@ -1,20 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { nanoid } from 'nanoid';
-import { addChild, setPerson, setPreviewData } from "../../redux";
+import { addChild, setPerson, setPreviewData, setErrors } from "../../redux";
 import { Fieldset, ButtonContainer, Legend, StyledForm } from "./styles";
 import { Button, Input } from "../ui";
 import { ChildField } from "../index";
-import { checkInputs } from "../../utils/functions";
+import { checkInputs, validateInput } from "../../utils/functions";
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const { person, child } = useSelector(state => state.inputsData);
+  const { person, child, errors } = useSelector(state => state.inputsData);
+
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (!checkInputs(person)) return;
+    if (checkInputs(person).length > 0) {
+      const err = checkInputs(person);
+      dispatch(setErrors(err));
+      return;
+    }
 
     dispatch(setPreviewData({ person, child }));
   }
@@ -24,7 +29,14 @@ export const Form = () => {
   }
 
   const personChangeHandler = (e) => {
-    dispatch(setPerson({ name: e.target.name, inputValue: e.target.value }))
+    const inputValue = validateInput(e);
+
+    dispatch(setPerson({ name: e.target.name, inputValue }))
+  }
+
+  const checkInputErrors = (e) => {
+    console.log('Hit!');
+    console.log(e.target.name);
   }
 
   const addChildButton = child.length < 5 ?

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   person: { name: "", age: "" },
   child: [],
+  errors: [],
 }
 
 export const inputsSlice = createSlice({
@@ -22,7 +23,10 @@ export const inputsSlice = createSlice({
       const index = state.child.findIndex((el) => el.id === action.payload.id);
       state.child[index][action.payload.name] = action.payload.inputValue;
     },
+    setErrors: (state, action) => {
+      state.errors = action.payload;
+    }
   }
 });
 
-export const { addChild, deleteChild, setPerson, setChild } = inputsSlice.actions;
+export const { addChild, deleteChild, setPerson, setChild, setErrors } = inputsSlice.actions;

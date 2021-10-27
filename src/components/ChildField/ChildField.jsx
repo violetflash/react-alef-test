@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteChild, setChild } from "../../redux";
 import { ChildContainer } from "./styles";
 import { Button, Input } from "../ui";
+import {validateInput} from "../../utils/functions";
 
 export const ChildField = ({ id }) => {
   const dispatch = useDispatch();
@@ -12,9 +13,9 @@ export const ChildField = ({ id }) => {
 
   const deleteChildHandler = (id) => dispatch(deleteChild(id));
 
-
   const setChildHandler = (e, id) => {
-    dispatch(setChild({ id, name: e.target.name, inputValue: e.target.value }))
+    const inputValue = validateInput(e);
+    dispatch(setChild({ id, name: e.target.name, inputValue }))
   }
 
   return (
