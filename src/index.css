@@ -18,7 +18,7 @@ html {
   --fz-normal: 14px;
   --fz-accent: 16px;
   --fw-normal: 400;
-  --fw-strong: 500;
+  --fw-medium: 500;
   --fw-bold: 700;
   --lh: 24px;
 
@@ -32,6 +32,7 @@ html {
   --gray-light: #fafafa;
   --gray: #f1f1f1;
   --bg-color: var(--white);
+  --nav-links-color: var(--main-color-light);
   --bg-color-footer: var(--gray-light);
   --input-border-color: var(--gray);
 

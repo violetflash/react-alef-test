@@ -1,22 +1,10 @@
-import { PageContent } from "../styles";
-import { Section } from "../../components/ui";
-import { ChildView } from "../../components/ChildView/ChildView";
-import { getAgeEnding } from "../../utils/functions";
+import { PageContent } from "../../components";
+import {Preview} from "../../components/Preview/Preview";
 
 export const PreviewPage = () => {
-  const age = 10;
-  const ageEnding = getAgeEnding(age);
-  const name = 'Василий';
-  const text = `${name}, ${age} ${ageEnding}`;
   return (
-    <Section>
-      <PageContent
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1}}
-        transition={{ duration: 0.3 }}
-      >
-        <ChildView text={text}/>
-      </PageContent>
-    </Section>
+    <PageContent>
+      <Preview/>
+    </PageContent>
   )
 };

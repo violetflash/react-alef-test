@@ -3,3 +3,4 @@ export * from './Logo/Logo';
 export * from './Header/Header';
 export * from './Footer/Footer';
 export * from './ChildField/ChildField';
+export * from './PageContent/PageContent';

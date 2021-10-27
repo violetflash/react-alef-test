@@ -10,7 +10,7 @@ export const NavList = styled.ul`
 `;
 
 export const NavElement = styled.li`
-  color: ${props => props.active ? 'var(--accent-color)' : 'var(--main-color)'};
+  color: ${props => props.active ? 'var(--accent-color)' : 'var(--nav-links-color)'};
   margin: 0 12px;
   font-size: 14px;
   transition: all 0.3s ease;

@@ -5,6 +5,7 @@ import { addChild, setPerson, setPreviewData } from "../../redux";
 import { Fieldset, ButtonContainer, Legend, StyledForm } from "./styles";
 import { Button, Input } from "../ui";
 import { ChildField } from "../index";
+import { checkInputs } from "../../utils/functions";
 
 export const Form = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,10 @@ export const Form = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!checkInputs(person)) return;
+
+    dispatch(setPreviewData({ person, child }));
   }
 
   const addChildHandler = () => {
@@ -21,8 +26,6 @@ export const Form = () => {
   const personChangeHandler = (e) => {
     dispatch(setPerson({ name: e.target.name, inputValue: e.target.value }))
   }
-
-  const saveDataHandler = () => dispatch(setPreviewData({ person, child }));
 
   const addChildButton = child.length < 5 ?
     <Button text="Добавить ребенка" secondary icon onClick={addChildHandler}/> : null;
@@ -52,7 +55,7 @@ export const Form = () => {
           {childRows}
         </AnimatePresence>
       </Fieldset>
-      <Button text="Сохранить" primary onClick={saveDataHandler}/>
+      <Button text="Сохранить" primary/>
     </StyledForm>
   )
 };
