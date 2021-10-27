@@ -28,10 +28,12 @@ html {
   --accent-color: #01a7fd;
   --accent-color-hover: #0f79af;
   --white: #fff;
-  --gray: #fafafa;
+  --black: #000;
+  --gray-light: #fafafa;
+  --gray: #f1f1f1;
   --bg-color: var(--white);
-  --bg-color-footer: var(--gray);
-  --input-border-color: #f1f1f1;
+  --bg-color-footer: var(--gray-light);
+  --input-border-color: var(--gray);
 
   /* buttons colors */
 

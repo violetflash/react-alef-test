@@ -1,2 +1,3 @@
 export * from './store/store';
-export * from './slices/dataSlice';
+export * from './slices/inputsSlice';
+export * from './slices/previewSlice';

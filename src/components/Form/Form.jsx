@@ -1,54 +1,49 @@
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
-import {addChild} from "../../redux";
-import {Fieldset, ButtonContainer, Legend, StyledForm} from "./styles";
-import {Button, Input} from "../ui";
+import { nanoid } from 'nanoid';
+import { addChild, setPerson, setPreviewData } from "../../redux";
+import { Fieldset, ButtonContainer, Legend, StyledForm } from "./styles";
+import { Button, Input } from "../ui";
 import { ChildField } from "../index";
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const { childNum } = useSelector(state => state.data);
+  const { person, child } = useSelector(state => state.inputsData);
 
   const submitHandler = (e) => {
     e.preventDefault();
   }
 
   const addChildHandler = () => {
-    dispatch(addChild());
+    dispatch(addChild({ id: nanoid(), name: "", age: "" }));
   }
 
-  const addChildButton = childNum < 5 ?
+  const personChangeHandler = (e) => {
+    dispatch(setPerson({ name: e.target.name, inputValue: e.target.value }))
+  }
+
+  const saveDataHandler = () => dispatch(setPreviewData({ person, child }));
+
+  const addChildButton = child.length < 5 ?
     <Button text="Добавить ребенка" secondary icon onClick={addChildHandler}/> : null;
 
-  const childRows = childNum > 0 ?
-    Array.from(Array(childNum).keys(), (_, i) => i + 1)
-      .map((el) => {
-        return <ChildField key={el} index={el}/>
+  const childRows = child.length > 0 ?
+    child.map(el => {
+      return <ChildField key={el.id} id={el.id}/>
     }) : null;
 
   return (
     <StyledForm onSubmit={submitHandler}>
-      <AnimatePresence>
-        <Fieldset
-          initial={{ y: 60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut'  }}
-        >
-          <Legend>
-            Персональные данные
-          </Legend>
-          <Input label="Имя" name="name"/>
-          <Input label="Возраст" name="age"/>
-        </Fieldset>
-      </AnimatePresence>
-
-      <Fieldset
-        initial={{ y: 40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut'  }}
-      >
+      <Fieldset>
         <Legend>
-          Дети (макс. 5) - сейчас: {childNum}
+          Персональные данные
+        </Legend>
+        <Input label="Имя" name="name" value={person.name} onChange={personChangeHandler}/>
+        <Input label="Возраст" name="age" value={person.age} onChange={personChangeHandler}/>
+      </Fieldset>
+      <Fieldset>
+        <Legend>
+          Дети: {child.length} (макс. 5)
         </Legend>
         <ButtonContainer>
           {addChildButton}
@@ -57,7 +52,7 @@ export const Form = () => {
           {childRows}
         </AnimatePresence>
       </Fieldset>
-      <Button text="Сохранить" primary/>
+      <Button text="Сохранить" primary onClick={saveDataHandler}/>
     </StyledForm>
   )
 };

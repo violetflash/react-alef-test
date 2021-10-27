@@ -10,7 +10,7 @@ export const Label = styled.label`
   transition: all 0.3s;
 
   &:hover {
-    box-shadow: var(--input-hover-shadow);
+    //box-shadow: var(--input-hover-shadow);
   }
   
   &:last-child {

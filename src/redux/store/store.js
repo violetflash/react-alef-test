@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dataSlice } from "../slices/dataSlice";
+import { inputsSlice } from "../slices/inputsSlice";
+import { previewSlice } from "../slices/previewSlice";
 
 export const store = configureStore({
   reducer: {
-    data: dataSlice.reducer
+    inputsData: inputsSlice.reducer,
+    previewData: previewSlice.reducer
   }
 });
