@@ -1,7 +1,8 @@
+
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { nanoid } from 'nanoid';
-import { addChild, setPerson, setPreviewData, setErrors } from "../../redux";
+import { addChild, setPerson, setPreviewData, setErrors, clearError } from "../../redux";
 import { Fieldset, ButtonContainer, Legend, StyledForm } from "./styles";
 import { Button, Input } from "../ui";
 import { ChildField } from "../index";
@@ -15,8 +16,9 @@ export const Form = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (checkInputs(person).length > 0) {
-      const err = checkInputs(person);
+    const err = checkInputs(person);
+
+    if (err.length) {
       dispatch(setErrors(err));
       return;
     }
@@ -24,7 +26,8 @@ export const Form = () => {
     dispatch(setPreviewData({ person, child }));
   }
 
-  const addChildHandler = () => {
+  const addChildHandler = (e) => {
+    e.preventDefault();
     dispatch(addChild({ id: nanoid(), name: "", age: "" }));
   }
 
@@ -32,12 +35,13 @@ export const Form = () => {
     const inputValue = validateInput(e);
 
     dispatch(setPerson({ name: e.target.name, inputValue }))
-  }
+  };
 
-  const checkInputErrors = (e) => {
-    console.log('Hit!');
-    console.log(e.target.name);
-  }
+  const focusHandler = (e) => {
+    if (errors.some(err => err === e.target.name)) {
+      dispatch(clearError(e.target.name));
+    }
+  };
 
   const addChildButton = child.length < 5 ?
     <Button text="Добавить ребенка" secondary icon onClick={addChildHandler}/> : null;
@@ -47,14 +51,29 @@ export const Form = () => {
       return <ChildField key={el.id} id={el.id}/>
     }) : null;
 
+
   return (
     <StyledForm onSubmit={submitHandler}>
       <Fieldset>
         <Legend>
           Персональные данные
         </Legend>
-        <Input label="Имя" name="name" value={person.name} onChange={personChangeHandler}/>
-        <Input label="Возраст" name="age" value={person.age} onChange={personChangeHandler}/>
+        <Input
+          label="Имя"
+          name="name"
+          value={person.name}
+          error={errors.some(err => err === 'name')}
+          onChange={personChangeHandler}
+          onFocus={focusHandler}
+        />
+        <Input
+          label="Возраст"
+          error={errors.some(err => err === 'age')}
+          name="age"
+          value={person.age}
+          onChange={personChangeHandler}
+          onFocus={focusHandler}
+        />
       </Fieldset>
       <Fieldset>
         <Legend>

@@ -25,8 +25,11 @@ export const inputsSlice = createSlice({
     },
     setErrors: (state, action) => {
       state.errors = action.payload;
+    },
+    clearError: (state, action) => {
+      state.errors = state.errors.filter(err => err !== action.payload);
     }
   }
 });
 
-export const { addChild, deleteChild, setPerson, setChild, setErrors } = inputsSlice.actions;
+export const { addChild, deleteChild, setPerson, setChild, setErrors, clearError } = inputsSlice.actions;

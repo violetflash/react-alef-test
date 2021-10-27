@@ -9,17 +9,13 @@ export const Label = styled.label`
   border-radius: var(--b-radius-input);
   width: 100%;
   transition: all 0.3s;
-
-  &:hover {
-    //box-shadow: var(--input-hover-shadow);
-  }
   
   &:last-child {
     margin: 0;
   }
   
   ${props => props.error && css`
-    background-color: #fd7a62;
+    background-color: var(--input-error-color);
   `}
   
 `;

@@ -35,6 +35,7 @@ html {
   --nav-links-color: var(--main-color-light);
   --bg-color-footer: var(--gray-light);
   --input-border-color: var(--gray);
+  --input-error-color: #F9E3E3;
 
   /* buttons colors */
 
