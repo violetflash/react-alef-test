@@ -1,25 +1,24 @@
-
 const capitalizer = str => str[0].toUpperCase() + str.slice(1);
 
 
 const getDeclension = (age) => {
 
   switch (true) {
-    case (age % 100) > 4 && (age % 100) < 20:
-      return 'лет';
-    case (age % 10) < 5 && (age % 10) > 1:
-      return 'года';
-    case (age % 10 === 1):
-      return 'год';
-    default:
-      return 'лет';
+  case (age % 100) > 4 && (age % 100) < 20:
+    return 'лет';
+  case (age % 10) < 5 && (age % 10) > 1:
+    return 'года';
+  case (age % 10 === 1):
+    return 'год';
+  default:
+    return 'лет';
   }
 };
 
 
 export const getBadgeText = (name, age) => {
   return `${name}, ${age} ${getDeclension(age)}`;
-}
+};
 
 export const checkInputs = (obj) => {
   const errors = [];
@@ -44,12 +43,12 @@ export const validateName = (name) => {
     .replace(/^./gi, match => capitalizer(match))
     .replace(/(?<=\s)[a-zA-Zа-яА-Я]/gi, match => capitalizer(match))
     .replace(/(?<=-)[a-zA-Zа-яА-Я]/gi, match => capitalizer(match))
-  ;
+    ;
 };
 
 const validateAge = (age) => {
   return age.replace(/[^\d]/, '');
-}
+};
 
 export const validateInput = (e) => {
 
@@ -62,4 +61,4 @@ export const validateInput = (e) => {
   }
 
   return e.target.value;
-}
+};
