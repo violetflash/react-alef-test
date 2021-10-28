@@ -1,20 +1,10 @@
 const capitalizer = str => str[0].toUpperCase() + str.slice(1);
 
-
 const getDeclension = (age) => {
-
-  switch (true) {
-  case (age % 100) > 4 && (age % 100) < 20:
-    return 'лет';
-  case (age % 10) < 5 && (age % 10) > 1:
-    return 'года';
-  case (age % 10 === 1):
-    return 'год';
-  default:
-    return 'лет';
-  }
+  const declensions = ['год', 'года', 'лет'];
+  const cases = [2, 0, 1, 1, 1, 2];
+  return declensions[ (age%100>4 && age%100<20)? 2 : cases[(age%10<5)?age%10:5] ];
 };
-
 
 export const getBadgeText = (name, age) => {
   return `${name}, ${age} ${getDeclension(age)}`;
